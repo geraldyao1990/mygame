@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飓风1345改10微变</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background-color: #34495e;
+            color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #2ecc71;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: clamp(15px, 3vw, 40px);
+            margin: 25px 0;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding: 0 10px;
+            scrollbar-width: none;
+        }
+
+        .btn-group::-webkit-scrollbar {
+            display: none;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: clamp(1em, 2vw, 1.1em);
+            min-width: clamp(140px, 20vw, 160px);
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .btn-icon {
+            margin-left: 10px;
+            animation: blink 1.5s infinite;
+            font-size: 1.2em;
+        }
+
+        .btn-qq .btn-icon {
+            color: #3498db;
+        }
+
+        .btn-download .btn-icon {
+            color: #2ecc71;
+        }
+
+        .btn-recharge .btn-icon {
+            color: #e74c3c;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .notice {
+            background-color: #fff5eb;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        /* 居中倒计时样式 */
+        .center-countdown {
+            text-align: center;
+            padding: 30px 0;
+            margin: 25px 0;
+            background-color: #2c3e50;
+            border-radius: 10px;
+        }
+
+        .countdown-timer {
+            font-size: clamp(1.8em, 5vw, 2.5em);
+            font-weight: bold;
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .countdown-timer span {
+            background-color: #34495e;
+            padding: clamp(10px, 3vw, 15px) clamp(15px, 4vw, 20px);
+            border-radius: 8px;
+            min-width: clamp(60px, 10vw, 80px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .server-open {
+            font-size: clamp(1.5em, 4vw, 2em);
+            color: #e74c3c;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* BOSS详情样式 */
+        .boss-info {
+            margin-top: 20px;
+        }
+
+        .boss-item {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .boss-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .boss-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .boss-desc {
+            margin-top: 10px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .btn-group {
+                gap: 15px;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+        }
+
+        /* 新增视频和图片样式 */
+        .game-media {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .game-media h3 {
+            margin-bottom: 15px;
+        }
+
+        .game-video {
+            margin-bottom: 25px;
+        }
+
+        .game-images {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .game-images img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #34495e;
+            color: white;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部信息 -->
+        <header class="header">
+            <h1>飓风1345改10微变</h1>
+            <p>职业最全，玩法最多，鸿利公益！</p>
+        </header>
+
+        <!-- 按钮组移到倒计时上方 -->
+        <div class="btn-group">
+
+            <a href="dl.html" target="_blank" class="btn btn-download">
+                游戏下载
+                <span class="btn-icon">💾
+            </a>
+
+            <a href="https://show.midsyg.com/pay5/g.html?gid=17515519130874861" target="_blank" class="btn btn-download">
+              赞助【三倍】
+                <span class="btn-icon">💾
+            </a>
+
+            <a href="index.html" target="_blank" class="btn btn-recharge">
+                返回首页
+                <span class="btn-icon">💎
+            </a>
+        </div>
+
+        <!-- 居中的倒计时 -->
+        <div class="center-countdown">
+            <h2 style="color: #e74c3c;">开启倒计时</h2>
+            <div class="countdown-timer" id="countdown">
+                <span id="days">00</span>天
+                <span id="hours">00</span>小时
+                <span id="minutes">00</span>分
+                <span id="seconds">00</span>秒
+            </div>
+            <div id="serverOpened" class="server-open" style="display: none;">
+                新区刚开，欢迎体验！
+            </div>
+        </div>
+
+        <!-- 开区信息
+        <section class="section">
+            <h2>开区公告</h2>
+            <div class="info-box">
+                <div>
+                    <p><strong>服务器名称：</strong>12职业-碧炎【推荐新区】，10职业-御天【推荐新区】</p>
+                    <p><strong>开区时间：</strong>12月31号18点整</p>
+                </div>
+                <div>
+                    <p><strong>客服QQ：</strong> 22570263</p>
+                    <p><strong>QQ群聊：</strong> 825196880</p>
+                </div>
+            </div>
+        </section>   -->
+
+        <!-- 重要提示 -->
+        <section class="section notice">
+            <h2>服务器规则</h2>
+            <p>✅ 严禁使用任何变态辅助，绿色公平环境</p>
+            <p>✅ 限制6开，若超出需大退所有客户端</p>
+			<p>✅三倍充值赠送，官网直冲</p>
+        </section>
+
+        <!-- 版本亮点 -->
+        <section class="section">
+            <h2>版本概述</h2>
+
+<p>★1：此版本为10职业飞升服，取消了辰皇以及焚香，满级160，保留了所有玩法，并进行简化</p>
+
+
+<p>★2：所有BOSS掉落鸿利元宝，同步鸿利商城，金币来源大幅提升，买一切</p>
+
+
+<p>★3：全新原创阵营护符+少量技能底层微调，保证职业平衡且阵营多样化，满技能，天书，造化</p>
+
+<p>★4：取消鬼道法宝洗天选技能，一经发现法宝带天选技能请卖商店，否者强制回收账号，无九黎无天宗护符，仙鬼王魔魂<玄>被和谐</p>
+
+<p>★5：泡点5天，送大量铁玉和金币，玩家装备保底+14两件和+15一件，本服炼器+15封顶，15以上无属性</p>
+
+        
+        </section>
+
+        <!-- 卡级与升级 -->
+
+		
+         <section class="section">
+            <h2>关于升级</h2>
+<p>★1：上线150级，飞升后自动135级，在周一仙处领取乾+9装备。助力快速上手</p>
+
+<p>★2：河阳陆雪琪以及龙神传送处添加多种特色任务，不仅有高额经验还有各种道具相送</p>
+
+<p>★3：其它原始升级任务请自行体验</p>
+
+
+        </section>
+
+        <!-- BOSS与活动 -->
+        <section class="section">
+		     <h2>关于活动</h2>
+
+<p>★1：焚香副本，奖励10玉、11玉、太极金丹，出玲珑给13玉</p>
+<p>★2：家族副本，奖励10玉，11玉，太极金丹</p>
+<p>★3：每晚天界钓鱼活动，可兑换限时幻灵石</p>
+
+
+
+          </section>
+            
+			        <!-- 充值福利 -->
+        <section class="section">
+            <h2>充值回馈</h2>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>赞助金额</th>
+                        <th>专属奖励</th>
+                    </tr>
+                    <tr>
+                        <td>单次满500R</td>
+                        <td>定制8属性元婴*1</td>
+                    </tr>
+                    <tr>
+                        <td>单次满1000R</td>
+                        <td>定制8属性元婴*2+会员坐骑（速度最高，可洗出高级属性）*1</td>
+                    </tr>
+					
+					                    <tr>
+                        <td>单次满2000R</td>
+                        <td>定制8属性元婴*2+会员坐骑（速度最高，可洗出高级属性）*1+终极幻灵石*1</td>
+                    </tr>
+
+                </table>
+                <p class="notice">注：单次充值有效，不累计计算。基础比例1：1000，双倍赠送，具体请看充值界面。</p>
+            </div>
+        </section>
+		
+            <!-- 详细的BOSS信息 -->
+			<section class="section">
+            <div class="boss-info">
+                <h3>BOSS详情与掉落</h3>
+                
+                <div class="boss-item">
+                    <div class="boss-name">河阳-南疆区域BOSS（荣耀殿堂）</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：30分钟</p>
+                        <p>• 掉落：金精铁玉（6级）、鸿利元宝10</p>
+                    </div>
+                </div>
+				
+
+                
+				  <div class="boss-item">
+                    <div class="boss-name">昆仑区域BOSS</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：1小时</p>
+                        <p>• 掉落：金精铁玉（8级）、鸿利元宝10</p>
+                    </div>
+                </div>
+				
+				
+				  <div class="boss-item">
+                    <div class="boss-name">修罗区域BOSS</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：1小时</p>
+                        <p>• 掉落：金精铁玉（8级）、鸿利元宝50</p>
+                    </div>
+                </div>
+				
+				  <div class="boss-item">
+                    <div class="boss-name">万蝠洞、黑石洞、狐岐山、镇魔洞区域BOSS（荣耀殿堂）</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：30分钟</p>
+                        <p>• 掉落：金精铁玉（6级）、鸿利元宝10</p>
+                    </div>
+                </div>
+
+                </div>
+				  <div class="boss-item">
+                    <div class="boss-name">幻月洞区域BOSS</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：2小时</p>
+                        <p>• 掉落：金精铁玉（9级）、鸿利元宝100</p>
+                    </div>
+                </div>						
+				  <div class="boss-item">
+                    <div class="boss-name">昆仑仙境区域BOSS</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：2小时</p>
+                        <p>• 掉落：金精铁玉（10级）、鸿利元宝200</p>
+                    </div>
+                </div>						
+			
+                <div class="boss-item">
+                    <div class="boss-name">炼狱区域BOSS</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：2小时</p>
+                        <p>• 掉落：金精铁玉（10级）、鸿利元宝200</p>                
+					</div>
+                </div>
+				
+				 <div class="boss-item">
+                    <div class="boss-name">冥界7王</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：4小时</p>
+                        <p>• 掉落：金精铁玉（11级）、鸿利元宝500、银票：1000金、玄水冰晶、叱天珠</p>                  
+					</div>
+                </div>
+				<div class="boss-item">
+                    <div class="boss-name">九人团（天弈战场）</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：6小时</p>
+                        <p>• 掉落：金精铁玉（11，12级）、鸿利元宝1000、银票：5000金、玄水冰晶、叱天珠、玄龙鳞</p>                  
+					</div>
+                </div>
+				
+				<div class="boss-item">
+                    <div class="boss-name">四神兽（荣耀殿堂+天弈战场）</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：6小时</p>
+                        <p>• 掉落：金精铁玉（11，12级）、鸿利元宝1000、银票：5000金、玄水冰晶、叱天珠、玄龙鳞</p>                  
+					</div>
+                </div>	
+
+				<div class="boss-item">
+                    <div class="boss-name">混沌主宰（昆仑冰面）</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：6小时</p>
+                        <p>• 掉落：155装备、鸿利元宝5000</p>                  
+					</div>
+                </div>		
+
+				<div class="boss-item">
+                    <div class="boss-name">活动BOSS（唐三藏处传送）</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：固定时间，详见唐三藏处说明</p>
+                        <p>• 掉落：高级铁玉、鸿利元宝、风云印碎片、天诛神石、紫薇神玉等</p>                  
+					</div>
+                </div>	
+
+				<div class="boss-item">
+                    <div class="boss-name">天界专属物品BOSS</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：固定时间，详见各传送阵说明</p>
+                        <p>• 掉落：高级铁玉、鸿利元宝、风云印碎片、天诛神石、紫薇神玉、琥珀魂珠、幻灵石碎片等</p>                  
+					</div>
+                </div>					
+				
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer>
+            <p>飓风诛仙 &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // 设置目标日期时间（修改这里可以调整倒计时）
+        const targetDate = new Date("2026-07-01T18:00:00").getTime();
+
+        // 更新倒计时的函数
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance > 0) {
+                // 计算剩余时间
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // 更新DOM元素
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            } else {
+                // 倒计时结束，显示服务器已开启
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("serverOpened").style.display = "block";
+            }
+        }
+
+        // 初始更新
+        updateCountdown();
+
+        // 每秒更新一次
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

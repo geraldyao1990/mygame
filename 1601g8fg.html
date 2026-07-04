@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飓风1601改8防官</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background-color: #34495e;
+            color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #2ecc71;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: clamp(15px, 3vw, 40px);
+            margin: 25px 0;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding: 0 10px;
+            scrollbar-width: none;
+        }
+
+        .btn-group::-webkit-scrollbar {
+            display: none;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: clamp(1em, 2vw, 1.1em);
+            min-width: clamp(140px, 20vw, 160px);
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .btn-icon {
+            margin-left: 10px;
+            animation: blink 1.5s infinite;
+            font-size: 1.2em;
+        }
+
+        .btn-qq .btn-icon {
+            color: #3498db;
+        }
+
+        .btn-download .btn-icon {
+            color: #2ecc71;
+        }
+
+        .btn-recharge .btn-icon {
+            color: #e74c3c;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .notice {
+            background-color: #fff5eb;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        /* 居中倒计时样式 */
+        .center-countdown {
+            text-align: center;
+            padding: 30px 0;
+            margin: 25px 0;
+            background-color: #2c3e50;
+            border-radius: 10px;
+        }
+
+        .countdown-timer {
+            font-size: clamp(1.8em, 5vw, 2.5em);
+            font-weight: bold;
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .countdown-timer span {
+            background-color: #34495e;
+            padding: clamp(10px, 3vw, 15px) clamp(15px, 4vw, 20px);
+            border-radius: 8px;
+            min-width: clamp(60px, 10vw, 80px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .server-open {
+            font-size: clamp(1.5em, 4vw, 2em);
+            color: #e74c3c;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* BOSS详情样式 */
+        .boss-info {
+            margin-top: 20px;
+        }
+
+        .boss-item {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .boss-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .boss-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .boss-desc {
+            margin-top: 10px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .btn-group {
+                gap: 15px;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+        }
+
+        /* 新增视频和图片样式 */
+        .game-media {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .game-media h3 {
+            margin-bottom: 15px;
+        }
+
+        .game-video {
+            margin-bottom: 25px;
+        }
+
+        .game-images {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .game-images img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #34495e;
+            color: white;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部信息 -->
+        <header class="header">
+            <h1>飓风1601改8防官</h1>
+            <p>新时代版本，操作流畅，界面华丽，玩法多样！</p>
+        </header>
+
+        <!-- 按钮组移到倒计时上方 -->
+        <div class="btn-group">
+
+            <a href="dl.html" target="_blank" class="btn btn-download">
+                游戏下载
+                <span class="btn-icon">💾
+            </a>
+            <a href="index.html" target="_blank" class="btn btn-recharge">
+                返回首页
+                <span class="btn-icon">💎
+            </a>
+        </div>
+
+        <!-- 居中的倒计时 -->
+        <div class="center-countdown">
+            <h2 style="color: #e74c3c;">开启倒计时</h2>
+            <div class="countdown-timer" id="countdown">
+                <span id="days">00</span>天
+                <span id="hours">00</span>小时
+                <span id="minutes">00</span>分
+                <span id="seconds">00</span>秒
+            </div>
+            <div id="serverOpened" class="server-open" style="display: none;">
+                删档内测中！
+            </div>
+        </div>
+
+        <!-- 开区信息 
+        <section class="section">
+            <h2>开区公告</h2>
+            <div class="info-box">
+                <div>
+                    <p><strong>服务器名称：</strong>星梦【首区】</p>
+                    <p><strong>开区时间：</strong>9月17号13点整</p>
+                </div>
+                <div>
+                    <p><strong>客服QQ：</strong> 22570263</p>
+                    <p><strong>QQ群聊：</strong> 825196880</p>
+                </div>
+            </div>
+        </section>   -->
+
+        <!-- 重要提示 -->
+        <section class="section notice">
+            <h2>服务器规则</h2>
+            <p>✅ 严禁使用任何变态辅助，绿色公平环境</p>
+            <p>✅ 限制6开，若超出需大退所有客户端</p>
+			<p>✅ 三倍充值赠送，官网直冲</p>
+        </section>
+
+        <!-- 版本亮点 -->
+        <section class="section">
+            <h2>版本概述</h2>
+
+<p>★1：独家1601版本改1345.1076.422版本集合玩法无论你是玩422版本也能简单上手（进游戏一看就秒懂）</p>
+
+<p>★2：版本制定16改8职业：人族：青云、鬼王、合欢、鬼道、天音    神族：烈山、天华、九黎</p>
+
+<p>★3：进游戏进入新手村：150自动返回老河阳，飞升后会依然回到新手村，入门派后打开背包经验卷直接到160。如果没有返回老河阳地图，点河阳回城符即可</p>
+
+<p>★4：游戏内删除：宠物、星座、阵灵、和其他高级繁琐物品，游戏内保留：元婴、佩章、星魂、轩辕策、命符、炼丹（命符、炼丹金币商人处免费出售、和其他部分细节）</p>
+
+<p>★5：新手上线到NPC（诛仙●会员）处可以免费购买148得各职业装备</p>
+
+<p>★6：游戏内可以通过打BOSS或者挂机商场抽奖可以获取地煞装备（中间不用升人王）</p>
+
+<p>★7：地煞装备可以通过封神道人升级为天罡装备（天罡目前为最高级装备）</p>
+
+<p>★8：开放81元神、系统赠送、满元神、满造化、满天书、999技能点</p>
+
+<p>★9：装备炼器上限+17。版本铁玉最高掉落16玉，商场可以直接购买保底符、和神运符具体看游戏介绍</p>
+
+<p>★10：法宝可飞升、不能融合，商城特别简单：大部分为免费，商城简单，一目了然</p>
+
+<p>★11：赞助比例为1:100，消费元宝系统赠送大礼、请在游戏消费奖励中查看</p>
+
+        
+        </section>
+
+        <!-- 技改 -->
+        <section class="section">
+            <h2>技改相关</h2>
+
+<p>★1：技改（天华）佛天华镜花水月二：不能修行，天书：映月不能修行</p>
+
+<p>★2：技改（九黎）神通：蚩魂玄、蚩魂煞、蚩魂禅：无法学习，天书：天宗只能修行一级</p>
+
+<p>★3：技改（青云）天珠剑气二：无限释放，七劫斩龙诀：无限释放</p>
+
+<p>★4：鬼道装备：削弱技能躲闪</p>
+
+
+
+        
+        </section>
+
+        <!-- BOSS与活动 -->
+        <section class="section">
+		     <h2>关于活动</h2>
+
+<p>家族副本、焚香副本、鸿蒙副本、四象副本、聚妖副本有奖励（打最低级难度→初入江湖）</p>
+
+<p>固定奖励： 轩辕灵契*2、低级元魂珠、高级元魂珠，其他材料</p>
+
+
+
+          </section>
+            
+
+		
+            <!-- 详细的BOSS信息 -->
+			<section class="section">
+            <div class="boss-info">
+                <h3>BOSS详情与掉落</h3>
+                
+                <div class="boss-item">
+                    <div class="boss-name">河阳-昆仑</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：1小时</p>
+                        <p>• 随机掉落：6.7.8级铁玉、银票、金砖、首饰材料（游戏内可以兑换升级首饰和其他物品）</p>
+                    </div>
+                </div>
+				
+
+                
+				  <div class="boss-item">
+                    <div class="boss-name">修罗七王、仙境、幻月BOSS</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：2小时</p>
+                        <p>• 随机掉落：8.9.10级铁玉、银票、金砖、高级材料（游戏内可以兑换高级物品）</p>
+                    </div>
+                </div>
+				
+				
+				  <div class="boss-item">
+                    <div class="boss-name">冥界七王</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：4小时</p>
+                        <p>• 随机掉落：11.12.13级铁玉、银票、金砖、特级材料（游戏内可以兑换特级物品），附加掉落固定掉落（九华圣佩、开启灌注符唯一路径）</p>
+                    </div>
+                </div>
+				
+				  <div class="boss-item">
+                    <div class="boss-name">九人团BOSS（90级战场、105战场、135级战场）</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：4小时</p>
+                        <p>• 随机掉落：12.13.14级铁玉、银票、金砖、综合材料（游戏内可以兑换特级物品），附加掉落固定掉落（诛仙令牌、兑换顶级装备）</p>
+                    </div>
+                </div>
+
+                </div>
+				  <div class="boss-item">
+                    <div class="boss-name">4神兽（传送NPC）</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：4小时</p>
+                        <p>• 随机掉落：12.13.14级铁玉、银票、金砖、综合材料（游戏内可以兑换特级物品），附加掉落固定掉落（诛仙令牌碎片、兑换顶级装备）</p>
+                    </div>
+                </div>						
+				  <div class="boss-item">
+                    <div class="boss-name">终极·空铠鬼</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：（每天晚上19点）【活动传送处有19点传送】（持续时间一个小时）</p>
+                        <p>• 随机掉落：12.13.14级铁玉，元魂一星、元魂二星、大乘进化卷、大乘进化卷一星、银票、其他材料，随机掉落：地煞武器兑换卷、轩辕策兑换卷（二者其中一个）</p>
+                    </div>
+                </div>						
+			
+                <div class="boss-item">
+                    <div class="boss-name">万霆</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：（每天晚上20点）【流坡山小池镇外】（持续时间一个小时）（这个BOSS只有周一到周四刷新）</p>
+                        <p>• 随机掉落：12.13.14级铁玉，元魂一星、元魂二星、大乘进化卷、大乘进化卷一星、银票、其他材料，随机掉落：佩章兑换卷一个、15玉一个（二者其中一个）</p>                
+					</div>
+                </div>
+				
+				 <div class="boss-item">
+                    <div class="boss-name">神·雨神</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：（每天晚上22点）【120级战场内】（持续时间一个小时）</p>
+                        <p>• 随机掉落：12.13.14级铁玉，元魂一星、元魂二星、大乘进化卷、大乘进化卷一星、银票、其他材料，随机掉落：幻灵石兑换卷、15玉一个（二者其中一个）</p>                  
+					</div>
+                </div>
+				<div class="boss-item">
+                    <div class="boss-name">神·花绛妃</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：（每天晚上22点）【昆仑冰面】（持续时间一个小时）</p>
+                        <p>• 随机掉落：12.13.14级铁玉，元魂一星、元魂二星、大乘进化卷、大乘进化卷一星、银票、其他材料，随机掉落：称号兑换卷、15玉一个（二者其中一个）</p>                  
+					</div>
+                </div>
+				
+				<div class="boss-item">
+                    <div class="boss-name">灵境·帝羽</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：（每周五20点刷新）（持续时间二个小时）</p>
+                        <p>• 随机掉落：12.13.14级铁玉，元魂一星、元魂二星、大乘进化卷、大乘进化卷一星、银票、其他材料，随机掉落：终极时装兑换、16级铁玉一个（二者其中一个）</p>                  
+					</div>
+                </div>	
+
+				<div class="boss-item">
+                    <div class="boss-name">灵境·夔龙</div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：（每周六20点刷新）（持续时间二个小时）</p>
+                        <p>• 随机掉落：12.13.14级铁玉，元魂一星、元魂二星、大乘进化卷、大乘进化卷一星、银票、其他材料，随机掉落：终极幻灵石兑换卷、16级铁玉一个（二者其中一个）
+</p>                  
+					</div>
+                </div>		
+
+				<div class="boss-item">
+                    <div class="boss-name">灵境·娲皇 </div>
+                    <div class="boss-desc">
+                        <p>• 刷新时间：（每周日20点刷新）（持续时间二个小时）【诛仙大型活动NPC传入】内有观战台（此地图死了原地复活）复活时间延长</p>
+                        <p>• 随机掉落：12.13.14级铁玉，元魂一星、元魂二星、大乘进化卷、大乘进化卷一星、银票、其他材料，随机掉落：时装武器兑换卷、16级铁玉一个（二者其中一个）此BOSS比较凶狠（能秒神佑、QF、穿遁）</p>                  
+					</div>
+                </div>	
+
+			
+				
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer>
+            <p>飓风诛仙 &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // 设置目标日期时间（修改这里可以调整倒计时）
+        const targetDate = new Date("2025-09-17T13:00:00").getTime();
+
+        // 更新倒计时的函数
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance > 0) {
+                // 计算剩余时间
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // 更新DOM元素
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            } else {
+                // 倒计时结束，显示服务器已开启
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("serverOpened").style.display = "block";
+            }
+        }
+
+        // 初始更新
+        updateCountdown();
+
+        // 每秒更新一次
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

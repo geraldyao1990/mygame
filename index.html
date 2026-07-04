@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>飓风-长久稳定|纯净模式|散人天堂</title>
+    <meta name="editor" content="xiaoyang">
+    <meta name="keywords" content="今日新区,长久稳定,公益打金,诛仙私服,17职业微变,仿官跨服天界,养老激情,散人天堂,体验不一样的诛仙！诛仙私服,诛仙sf,诛仙私服,诛仙sf,诛仙,诛仙3私服,诛仙3sf,诛仙仿官服,诛仙微变服,诛仙公益服,诛仙公益服,经典,怀旧,诛仙17职业,诛仙单机,诛仙新职业,诛仙新开服,345zx,诛仙私服发布">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+
+<iframe style="display:none;" src="https://qm.qq.com/cgi-bin/qm/qr?k=t-fQnACvCd5aTNedRopQFGdkE9uBq98i&jump_from=webapi&authKey=P9LV8KeHpwnzXAKlaF/K56Vm5YT066oqV0prGC6HFtbkXc3cagV0FaA6MEFrx0oG"></iframe>
+
+    <link rel="icon" type="image/x-icon" href="http://tl.changyou.com/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="http://tl.changyou.com/favicon.ico">
+    <link rel="stylesheet" href="css/alertBox.css" media="all">
+    <link rel="stylesheet" href="css/swiper.3.4.1.css">
+    <link rel="stylesheet" href="css/inner.css">
+    <script type="text/javascript">
+        function showtime() {
+            var nowtime = new Date();
+            var nowYear = nowtime.getFullYear();
+            var nowMonth = nowtime.getMonth() + 1;
+            var nowDate = nowtime.getDate();
+            var nowHour = nowtime.getHours();
+            var nowMinute = nowtime.getMinutes();
+            var nowApm = "";
+            
+            // 强制分钟为30（原逻辑存在问题）
+            nowMinute = 30;
+            
+            // 时间段判断
+            if (nowHour >= 0 && nowHour <= 8) {
+                nowApm = "通宵";
+            } else if (nowHour > 8 && nowHour <= 12) {
+                nowApm = "上午";
+            } else if (nowHour > 12 && nowHour <= 17) {
+                nowApm = "下午";
+            } else {
+                nowApm = "晚上";
+            }
+            
+            // 输出逻辑
+            if (nowApm == "通宵") {
+                document.write(nowApm + "推荐火爆新区");
+            } else {
+                document.write(nowYear + "年" + nowMonth + "月" + nowDate + "日" + nowApm + nowHour + "点刚刚开放");
+            }
+        }
+    </script>
+    <style>
+        /* 倒计时容器样式 */
+        .countdown-container {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            text-align: center;
+            width: 70%;
+            max-width: 500px;
+            padding: 25px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff3b3b 0%, #9a0000 100%);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        /* 关闭按钮样式 */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .close-btn:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .close-btn::before, .close-btn::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 2px;
+            background-color: #fff;
+        }
+        
+        .close-btn::before {
+            transform: rotate(45deg);
+        }
+        
+        .close-btn::after {
+            transform: rotate(-45deg);
+        }
+        
+        /* 倒计时文本样式 */
+        .countdown-text {
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        
+        /* 倒计时数字样式 */
+        .countdown-numbers {
+            font-family: "Arial Black", sans-serif;
+            font-size: 40px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+        
+        /* 倒计时结束后的文本样式 */
+        .countdown-ended {
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+        }
+        
+        /* 呼吸动画效果 */
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); }
+            50% { transform: translate(-50%, -50%) scale(1.03); box-shadow: 0 0 35px rgba(255, 0, 0, 0.8); }
+            100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap" id="wrap">
+        <div class="index_share">
+            <a href="index.html" class="go_index">首页&nbsp;&nbsp;|</a>
+            <marquee direction="left" behavior="scroll">欢迎来到飓风，期待您的加入！</marquee>
+        </div>
+
+        <div class="mid_content">
+            <i class="top_bg"></i>
+            <i class="bottom_bg"></i>
+            <div class="nav">
+                <i class="yun_left"></i>
+                <i class="yun_right"></i>
+                <ul>
+
+                    <i class="flower_second"></i>
+					<li class="nav_first"><a href="dl.html" target="_blank">游戏下载</a></li>
+                    <li class="nav_second"><a href="https://show.midsyg.com/pay5/g.html?gid=17515519130874861" target="_blank">友情赞助【三倍】</a></li>
+                    <i class="flower_third"></i>
+                    <li class="nav_third"><a href="422g4hj.html" target="_blank">4职怀旧</a></li>
+                    <i class="flower_fourth"></i>
+                    <li class="nav_fourth"><a href="422g5fg.html" target="_blank">5职防官</a></li>
+                    <i class="flower_fifth"></i>
+                    <li class="nav_fifth"><a href="1345g5wb.html" target="_blank">5职微变</a></li>
+					<i class="flower_sixth"></i>
+                    <li class="nav_sixth"><a href="1345g10wb.html" target="_blank">10职微变</a></li>
+				    <i class="flower_first"></i>
+
+			    
+                </ul>
+            </div>
+
+<div class="txt_area">
+    <!-- 新区时间区块 - 红色高亮 -->
+    <div class="highlight-block red-highlight">
+        <p class="tit">飓风，因你而精彩！</p>
+        <p class="tit">客服QQ：22570263，群聊QQ：825196880 </p>
+        <p class="tit">本服励志长久稳定，多版本打造，定期新区，定期合区，PS：合区鸿利元宝无法保留</p>
+        <p class="tit">本服无任何特殊待遇，不论散人亦或是家族，一视同仁。充值优惠力度大，免开尊口。</p>
+        <p class="tit">本服所有版本限制最多6开，若触发多开限制，需大退所有客户端重新登入游戏方可解除</p>
+		<p class="tit">本服加入反外挂机制，推荐使用南雨或者九思辅助，请右击登录器以管理员模式运行游戏</p>
+		<p class="tit">本服禁止定点挂机打BOSS，无限跑活打野外BOSS，违者封号处理！</p>
+    </div>
+
+    <!-- 前言区块 - 蓝色高亮 -->
+    <div id="qianyan" class="highlight-block blue-highlight">
+        <p class="tit">------------------友情提示------------------</p>
+        <p class="tit">请妥善保管自己的账号，不要轻易将个人账号资料告诉他人，造成损失，本服不负责</p>
+        <p class="tit">游戏建立角色名，禁止带有侮辱玩家角色字眼，或任何违规以及不利于和谐，影响游戏环境的词汇</p>
+    </div>
+
+    <!-- 封挂区块 - 紫色高亮-->
+    <div id="fenggua" class="highlight-block purple-highlight">
+        <p class="tit">完美世界 | 版权所有</p>
+        <p class="tit">本站仅作游戏玩家交流使用，如果侵犯了您的权益请联系我们第一时间删除！</p>
+    </div>
+	 
+</div>
+
+<style>
+    /* 高亮区块基础样式 */
+    .highlight-block {
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid;
+    }
+
+    /* 红色高亮区块 - 新区时间 */
+    .red-highlight {
+        background-color: rgba(255, 0, 0, 0.08);
+        border-left-color: #ff4d4d;
+    }
+
+    /* 蓝色高亮区块 - 前言 */
+    .blue-highlight {
+        background-color: rgba(0, 123, 255, 0.08);
+        border-left-color: #007bff;
+    }
+
+    /* 紫色高亮区块 - 封挂 */
+    .purple-highlight {
+        background-color: rgba(103, 58, 183, 0.08);
+        border-left-color: #673ab7;
+    }
+
+    /* 标题增强效果 */
+    .highlight-block .tit {
+        margin: 10px 0;
+        line-height: 1.6;
+    }
+
+    /* 箭头符号增强 */
+    .highlight-block .tit:first-child {
+        color: #333;
+        font-weight: bold;
+        text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    }
+</style>
+            <a href="javascript:;" class="go_top"></a>
+        </div>
+    </div>
+
+    
+    <script src="js/jquery(mixNIE).1.11.js"></script>
+    <script src="js/swiper.3.4.1.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/inner.js"></script>
+
+    <!-- 倒计时容器 -->
+    <div id="countdownContainer" class="countdown-container">
+        <div class="close-btn" onclick="closeCountdown()"></div>
+        <div id="countdownText" class="countdown-text">距离5职微变，新区开启还有：</div>
+        <div id="countdownNumbers" class="countdown-numbers">00:00:00</div>
+        <div id="countdownEnded" class="countdown-ended" style="display: none;">5职微变，新区刚刚开启，欢迎体验</div>
+    </div>
+    </div>
+
+
+    <script>
+        // 设置目标日期时间 - 可自由控制
+        // 格式：new Date(年, 月 - 1, 日, 时, 分, 秒)
+        // 示例：2025年5月30日19点
+      const targetDate = new Date(2026, 06, 03, 18, 0, 0);
+        
+        // 倒计时函数
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            if (diff <= 0) {
+                // 倒计时结束
+                document.getElementById('countdownText').style.display = 'none';
+                document.getElementById('countdownNumbers').style.display = 'none';
+                document.getElementById('countdownEnded').style.display = 'block';
+                clearInterval(countdownInterval);
+                return;
+            }
+            
+            // 计算剩余时间
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // 显示倒计时
+            document.getElementById('countdownNumbers').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // 关闭倒计时
+        function closeCountdown() {
+            document.getElementById('countdownContainer').style.display = 'none';
+        }
+        
+        // 初始化倒计时
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        
+        // 音乐控制
+        function autoPlay() {
+            var myAuto = document.getElementById('bgMusic');
+            var btn = document.getElementById('audioBtn');
+            if (myAuto.paused) {
+                myAuto.play();
+                $("#audioBtn").html("暂停音乐");
+                btn.classList.remove("pause");
+                btn.classList.add("play");
+            } else {
+                $("#audioBtn").html("播放音乐");
+                myAuto.pause();
+                btn.classList.remove("play");
+                btn.classList.add("pause");
+            }
+        }
+        
+        // 禁用右键菜单
+        document.oncontextmenu = function() { return false; }
+    </script>
+</body>
+</html>
